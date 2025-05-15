@@ -1,10 +1,9 @@
-import './App.css';
-import { ListTaskPage } from './pages/ListTaskPage';
+import { ListProjectPage } from './pages/ListProjectPage';
 
 function App() {
   return (
     <div>
-      <ListTaskPage />
+      <ListProjectPage />
     </div>
   );
 }

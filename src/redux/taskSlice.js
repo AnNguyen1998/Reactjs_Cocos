@@ -7,7 +7,7 @@ const initialState={
     error:null
 }
 
-const url = ''
+const url = 'http://localhost:3000/api/tasks/'
 export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async ()=>{
     const response = await axios.get(url)
     return response.data
@@ -23,6 +23,12 @@ const taskSlice = createSlice({
         builder
         .addCase(fetchTasks.pending,(state)=>{
             state.status = 'loading'
+        })
+        .addCase(fetchTasks.fulfilled,(state, action)=>{
+            state.tasks = action.payload;
+        })
+        .addCase(fetchTasks.rejected,(state, action)=>{
+            state.error = action.error.message;
         })
     }
 })

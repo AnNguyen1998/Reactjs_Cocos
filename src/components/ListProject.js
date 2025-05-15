@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 import React, { useEffect, useState } from 'react'
-import { fetchTasks } from "../redux/taskSlice";
+import { fetchProjects } from "../redux/projectSlice";
 
-export function ListTask() {
-
-    const { tasks, status, error } = useSelector(state => state.tasks);
+export function ListProject() {
+    
+    const { projects, status, error } = useSelector(state => state.projects);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchTasks());
+        dispatch(fetchProjects());
     }, [])
     return (
         <div>
@@ -19,7 +19,7 @@ export function ListTask() {
                             id
                         </th>
                         <th>
-                            Name Task
+                            Name Project
                         </th>
                         <th>
                             Status
@@ -33,17 +33,20 @@ export function ListTask() {
                         <th>
                             End Date
                         </th>
+                        <th>
+                            Control
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        tasks && tasks.map((item, index) => (
+                        projects && projects.map((item, index) => (
                             <tr>
                                 <th scope="row">
                                     {index + 1}
                                 </th>
                                 <td>
-                                    {item.taskName}
+                                    {item.projectName}
                                 </td>
                                 <td>
                                     {item.status}
@@ -56,6 +59,9 @@ export function ListTask() {
                                 </td>
                                 <td>
                                     {item.endDate}
+                                </td>
+                                <td>
+                                    <Button>ADD TASK</Button>
                                 </td>
                             </tr>
                         ))
